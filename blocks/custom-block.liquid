@@ -1,0 +1,31 @@
+
+<div class="main_block_section{{ forloop.index }}" >
+  <img src="{{ block.settings.blocksImg |img_url:'' }}">
+</div>
+
+{% schema %}
+  {
+    "name": "New block section",
+    "class": "mytag",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "blocksImg",
+        "label": "choose the image"
+        
+      }
+    ],
+   "presets": [
+      {
+        "name": "New block section"
+      }
+    ]
+  }
+{% endschema %}
+<style>
+  .main_block_section img
+  {
+    width:100%;
+  }
+</style>
+

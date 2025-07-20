@@ -1,0 +1,144 @@
+<div class="maincountDown">
+  <p class="timer__title">{{ section.settings.Section_title }}</p>
+  <div id="countdown">
+    
+    {{ section.settings.timer_text }}
+   
+    <div id="days" class></div> :
+  
+    <div id="hours"></div> :
+    
+    <div id="minutes"></div> :
+   
+    <div id="seconds"></div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Count-Down-timer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "timer_text",
+      "label": "Hurrey Up for Text"
+    },
+    {
+      "type": "text",
+      "id": "day",
+      "label": "Days"
+    },
+    {
+      "type": "text",
+      "id": "hour",
+      "label": "Hours"
+    },
+    {
+      "type": "text",
+      "id": "minute",
+      "label": "Minutes"
+    },
+    {
+      "type": "text",
+      "id": "second",
+      "label": "Seconds"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Count-Down-timer"
+    }
+  ]
+}
+{% endschema %}
+<style>
+      .text_timer{
+       min-height: 40px;
+      }
+        div#countdown {
+          display: flex;
+          gap: 2%;
+          align-items: center;
+          background: #fdefee;
+        border: 1px solid #f8cccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        color: #ff706b;
+          font-weight: 600;
+      font-size: 20px;
+          width: 100%;
+      justify-content: center;
+      }
+       #countdown  {
+        color: #ff706b;
+        font-size:18px;
+         font-weight: 600;
+    } 
+    .number, .separator {
+    display: flex;
+      align-items:centre;
+
+  }
+   @media screen and (max-width: 750px) {
+     div#countdown {
+       font-size: 14px;
+     }
+   }
+</style>
+<script>
+var daysElement = document.getElementById("days");
+var hoursElement = document.getElementById("hours");
+var minutesElement = document.getElementById("minutes");
+var secondsElement = document.getElementById("seconds");
+
+// Parse initial time values from the settings
+var daysValue = parseInt("{{ section.settings.day }}") || 0;
+var hoursValue = parseInt("{{ section.settings.hour }}") || 0;
+var minutesValue = parseInt("{{ section.settings.minute }}") || 0;
+var secondsValue = parseInt("{{ section.settings.second }}") || 0;
+
+// Calculate the total time in milliseconds
+var totalTimeInMilliseconds =
+  (daysValue * 24 * 60 * 60 * 1000) +
+  (hoursValue * 60 * 60 * 1000) +
+  (minutesValue * 60 * 1000) +
+  (secondsValue * 1000);
+
+// Check if an end time is already stored
+var targetEndTime = localStorage.getItem("targetEndTime");
+
+// If not stored, calculate and store it
+if (!targetEndTime) {
+  var currentTime = new Date().getTime();
+  targetEndTime = currentTime + totalTimeInMilliseconds;
+  localStorage.setItem("targetEndTime", targetEndTime);
+} else {
+  // Parse the stored value
+  targetEndTime = parseInt(targetEndTime);
+}
+
+// Start the countdown
+var x = setInterval(function () {
+  var now = new Date().getTime();
+  var remainingTime = targetEndTime - now;
+
+  if (remainingTime <= 0) {
+    clearInterval(x);
+    localStorage.removeItem("targetEndTime"); // Clear stored time after completion
+    var popup = document.querySelector(".show_hide");
+    popup.classList.remove("hidden");
+    return;
+  }
+
+  var days = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
+  var hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+  var minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+  var seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+
+  daysElement.innerHTML = days.toString().padStart(2, "0") + "d";
+  hoursElement.innerHTML = hours.toString().padStart(2, "0") + "h";
+  minutesElement.innerHTML = minutes.toString().padStart(2, "0") + "m";
+  secondsElement.innerHTML = seconds.toString().padStart(2, "0") + "s";
+}, 1000);
+
+
+</script>

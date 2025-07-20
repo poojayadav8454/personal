@@ -1,0 +1,28 @@
+// ***********************free product*********************************
+
+  <script>
+  window.onload = function(){
+    let cartContainsFreeProduct = false;
+    let cartContainsQualifyingProduct = false;
+ 
+    const qualifyingProductVariantId = 42191057027207; 
+    const freeProductVariantId = 42209932771463;
+           
+    {% for item in cart.items %}
+      if({{ item.id }} === freeProductVariantId){
+        cartContainsFreeProduct = true; 
+      }
+      if({{ item.id }} === qualifyingProductVariantId){
+         cartContainsQualifyingProduct = true;
+      }
+    {% endfor %}
+    
+
+    if(cartContainsQualifyingProduct && cartContainsFreeProduct === false) {
+        
+      jQuery.post('/cart/add.json', { quantity: 1, id: freeProductVariantId })
+      .done(function() {window.location.reload()})    
+        
+     } 
+  }
+  </script>

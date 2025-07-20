@@ -1,0 +1,20 @@
+<div class="main">
+  {% include 'schema-access-snippet',show_heading: section.settings.schema-access, %}
+</div>
+{% schema %}
+  {
+    "name": "schema-access",
+    "settings": [
+      {
+        "type": "text",
+        "id": "schema-access",
+        "label": "write text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "schema-access"
+      }
+    ]
+  }
+{% endschema %}

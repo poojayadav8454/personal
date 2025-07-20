@@ -1,0 +1,150 @@
+<!-- ==================Reviews Section ============================== -->
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="cstm_collection page-width section-{{ section.id }}-padding">
+  <div class="cstm_collection_container">
+    <p>{{ section.settings.colelction_heading_list }}</p>
+  </div>
+  <div class="collection_list_flex">
+    {% for block in section.blocks %}
+      <div class="collection_img_text" data-aos="fade-up" data-aos-duration="2000">
+        <a href="{{ block.settings.collection_name }}">
+          <img src="{{ block.settings.collection_image | img_url: '' }}">
+          <span class="collection_name">{{ block.settings.text_name }}</span>
+          <span class="cllection_arroews">{{ block.settings.svg_code }}</span>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "cstm Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "colelction_heading_list",
+      "label": "Enter Collection Heading"
+    },
+    {
+      "type": "header",
+      "content": "Padding Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_list",
+      "name": "collection_list",
+      "settings": [
+        {
+          "type": "url",
+          "id": "collection_name",
+          "label": "Select Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Choose Your Image"
+        },
+        {
+          "type": "text",
+          "id": "text_name",
+          "label": "Enter Text"
+        },
+        {
+          "type": "html",
+          "id": "svg_code",
+          "label": "Enter SVG Code"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cstm Collection"
+    }
+  ]
+}
+{% endschema %}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+  // Initialize AOS
+  AOS.init();
+</script>
+
+<style>
+  .collection_list_flex {
+    display: flex;
+    gap: 2%;
+    flex-wrap: wrap;
+  }
+  .collection_img_text {
+    width: 48%;
+    
+  }
+  .collection_img_text img {
+    width: 100%;
+    position: relative;
+  }
+  span.collection_name {
+   position: absolute;
+    transform: translate(-50%, -50%);
+    bottom: 0;
+    left: 15%;
+    color: #fff;
+    font-size: 25px;
+}
+  .cllection_arroews
+  {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    bottom: 0;
+    right:-15%;
+  }
+</style>
+
+
+
+
+
+
+
+
+

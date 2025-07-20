@@ -1,0 +1,656 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_VkJ3gy": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_LNNEUn": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/26537_S2__8901030935961.jpg",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/hair-care",
+            "button_style_secondary": false,
+            "box_align": "bottom-right",
+            "show_text_box": false
+          }
+        },
+        "slide_tXC8Vh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/26532_S4_8901030935930.jpg",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/combos",
+            "button_style_secondary": false,
+            "box_align": "bottom-right",
+            "show_text_box": false
+          }
+        },
+        "slide_jqkUhc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/44041_S5-8901030833953.jpg",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/combos",
+            "button_style_secondary": false,
+            "box_align": "bottom-right",
+            "show_text_box": false
+          }
+        }
+      },
+      "block_order": [
+        "slide_LNNEUn",
+        "slide_tXC8Vh",
+        "slide_jqkUhc"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 3,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
+      }
+    },
+    "timer_FF8Npb": {
+      "type": "timer",
+      "settings": {
+        "timer_text": "Hurry up Sell end",
+        "day": "03",
+        "hour": "11",
+        "minute": "23",
+        "second": "36"
+      }
+    },
+    "categories_collection_TpiG4G": {
+      "type": "categories_collection",
+      "blocks": {
+        "slider_AGqiMa": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories1"
+          }
+        },
+        "slider_CEyWNz": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories1"
+          }
+        },
+        "slider_bV8C49": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories1"
+          }
+        },
+        "slider_mtUqAQ": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories2"
+          }
+        },
+        "slider_Q6D8Tb": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories3"
+          }
+        },
+        "slider_ntXBmK": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories4"
+          }
+        },
+        "slider_FXFC8d": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories5"
+          }
+        },
+        "slider_izprzd": {
+          "type": "slider",
+          "settings": {
+            "categoriues_name_name": "",
+            "categoriues_name": "Categories6"
+          }
+        }
+      },
+      "block_order": [
+        "slider_AGqiMa",
+        "slider_CEyWNz",
+        "slider_bV8C49",
+        "slider_mtUqAQ",
+        "slider_Q6D8Tb",
+        "slider_ntXBmK",
+        "slider_FXFC8d",
+        "slider_izprzd"
+      ],
+      "disabled": true,
+      "settings": {
+        "colelction_heading": "Shop By Category",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "Featured products",
+        "gemmart_class_new": "feature-collection-1",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "our_stores_rcJB7W": {
+      "type": "our_stores",
+      "blocks": {
+        "store_section_cayzEM": {
+          "type": "Store_Section",
+          "settings": {
+            "city_name_url": "",
+            "city_name": "DELHI",
+            "city_address": "<p>145, Sultanpur,<br/>Mehrauli-Gurgaon Road</p>"
+          }
+        },
+        "store_section_4cVXwq": {
+          "type": "Store_Section",
+          "settings": {
+            "city_name_url": "",
+            "city_name": "DELHI",
+            "city_address": "<p> N-3, Main Market, GK-I </p>"
+          }
+        },
+        "store_section_UqNagL": {
+          "type": "Store_Section",
+          "settings": {
+            "city_name_url": "",
+            "city_name": "MUMBAI",
+            "city_address": "<p>Block #11-12, Raghuvanshi Mills Compound,</p>"
+          }
+        },
+        "store_section_6BLf8A": {
+          "type": "Store_Section",
+          "settings": {
+            "city_name_url": "",
+            "city_name": "MUMBAI",
+            "city_address": "<p>6-7, Laxmi Industrial Estate,New Link Road, Andheri West,\"</p>"
+          }
+        },
+        "store_section_LrBtjb": {
+          "type": "Store_Section",
+          "settings": {
+            "city_name_url": "",
+            "city_name": "KOLKATA",
+            "city_address": "<p>309/325, Quest Mall 33, Syed Aamir Ali Avenue<br/>            </p>"
+          }
+        },
+        "store_section_PaBACU": {
+          "type": "Store_Section",
+          "settings": {
+            "city_name_url": "",
+            "city_name": "KOLKATA",
+            "city_address": "<p>309/325, Quest Mall 33, Syed Aamir Ali Avenue</p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_section_cayzEM",
+        "store_section_4cVXwq",
+        "store_section_UqNagL",
+        "store_section_6BLf8A",
+        "store_section_LrBtjb",
+        "store_section_PaBACU"
+      ],
+      "disabled": true,
+      "settings": {
+        "store_heading": "OUR STORE",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cstm_product_grid_slider_q4PiGL": {
+      "type": "cstm_product_grid_slider",
+      "disabled": true,
+      "settings": {
+        "featured_url": "frontpage",
+        "featured_heading": "The Crystal Edit",
+        "featured_text": "All things crystal. All things elegant. Experience our new crystal edit, indulge in the refined elegance of crystal décor to illuminate your home with radiant sophistication.",
+        "button_text": "Explore the Edit",
+        "button_url_featured": "shopify://products/the-begum-wing-chair-floral-swirls",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cstm_collection_9F4erP": {
+      "type": "cstm_collection",
+      "blocks": {
+        "collection_list_gxVP6p": {
+          "type": "collection_list",
+          "settings": {
+            "collection_name": "",
+            "text_name": "",
+            "svg_code": ""
+          }
+        },
+        "collection_list_Mc88Rm": {
+          "type": "collection_list",
+          "settings": {
+            "collection_name": "",
+            "text_name": "",
+            "svg_code": ""
+          }
+        },
+        "collection_list_wwWj98": {
+          "type": "collection_list",
+          "settings": {
+            "collection_name": "",
+            "text_name": "",
+            "svg_code": ""
+          }
+        },
+        "collection_list_XXAmQe": {
+          "type": "collection_list",
+          "settings": {
+            "collection_name": "",
+            "text_name": "",
+            "svg_code": ""
+          }
+        },
+        "collection_list_3jfJnT": {
+          "type": "collection_list",
+          "settings": {
+            "collection_name": "",
+            "text_name": "",
+            "svg_code": ""
+          }
+        },
+        "collection_list_AhYkRK": {
+          "type": "collection_list",
+          "settings": {
+            "collection_name": "",
+            "text_name": "",
+            "svg_code": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_list_gxVP6p",
+        "collection_list_Mc88Rm",
+        "collection_list_wwWj98",
+        "collection_list_XXAmQe",
+        "collection_list_3jfJnT",
+        "collection_list_AhYkRK"
+      ],
+      "disabled": true,
+      "settings": {
+        "colelction_heading_list": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_gzFCnh": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_U4i3VP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image with text",
+            "heading_size": "h1"
+          }
+        },
+        "text_zFnpJV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_63qTPj": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_U4i3VP",
+        "text_zFnpJV",
+        "button_63qTPj"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_tab_LqTdgy": {
+      "type": "collection_tab",
+      "blocks": {
+        "collection_slider_wrUNzC": {
+          "type": "collection_slider",
+          "settings": {
+            "title": "Best Seller"
+          }
+        },
+        "collection_slider_RbT7mi": {
+          "type": "collection_slider",
+          "settings": {
+            "title": "Combo"
+          }
+        },
+        "collection_slider_6GJJy6": {
+          "type": "collection_slider",
+          "settings": {
+            "title": "New Colection"
+          }
+        }
+      },
+      "block_order": [
+        "collection_slider_wrUNzC",
+        "collection_slider_RbT7mi",
+        "collection_slider_6GJJy6"
+      ],
+      "settings": {
+        "collection_tab_text": "Featured Collections",
+        "padding_top": 100,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_tYAA66": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "gemmart_class_new": "feature-collection-1",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "hair-care",
+        "products_to_show": 7,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "scheme-2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 4,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_RTUWxh": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "gemmart_class_new": "feature-collection-2",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "combos",
+        "products_to_show": 10,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 4,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_YjjHFU": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "gemmart_class_new": "feature-collection-3",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "featured-new-1",
+        "products_to_show": 11,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 4,
+        "padding_bottom": 36
+      }
+    },
+    "testimunials_mKY3aW": {
+      "type": "testimunials",
+      "blocks": {
+        "colorful_image_text_Wg87rg": {
+          "type": "Colorful_Image_text",
+          "settings": {
+            "testimunials_data": "<p>“ Mr. Rashid Ahmed Mirza has been a Founder and the Driving Force behind RedTape’s sustained Growth and Success since its inception. He holds a Diploma in Leather Technology from London. Having Extensive experience of more than four decades, his expertise extends across Industrial & Leather Technology and Business Management. He is responsible for the overall management of the company. ”</p>",
+            "title": "Mr. Rashid Ahmed Mirza",
+            "testmunials_position": "MANAGING DIRECTOR"
+          }
+        },
+        "colorful_image_text_7ciVUq": {
+          "type": "Colorful_Image_text",
+          "settings": {
+            "testimunials_data": "<p>“ Mr. Rashid Ahmed Mirza has been a Founder and the Driving Force behind RedTape’s sustained Growth and Success since its inception. He holds a Diploma in Leather Technology from London. Having Extensive experience of more than four decades, his expertise extends across Industrial & Leather Technology and Business Management. He is responsible for the overall management of the company.”</p>",
+            "title": "Mr. Rashid Ahmed Mirza",
+            "testmunials_position": "MANAGING DIRECTOR"
+          }
+        },
+        "colorful_image_text_PEWaqU": {
+          "type": "Colorful_Image_text",
+          "settings": {
+            "testimunials_data": "<p>“  Mr. Rashid Ahmed Mirza has been a Founder and the Driving Force behind RedTape’s sustained Growth and Success since its inception. He holds a Diploma in Leather Technology from London. Having Extensive experience of more than four decades, his expertise extends across Industrial & Leather Technology and Business Management. He is responsible for the overall management of the company.”</p>",
+            "title": "Mr. Rashid Ahmed Mirza",
+            "testmunials_position": "MANAGING DIRECTOR"
+          }
+        },
+        "colorful_image_text_G4iFLf": {
+          "type": "Colorful_Image_text",
+          "settings": {
+            "testimunials_data": "<p>“ MR. ARVIND VERMA    has been a Founder and the Driving Force behind RedTape’s sustained Growth and Success since its inception. He holds a Diploma in Leather Technology from London. Having Extensive experience of more than four decades, his expertise extends across Industrial & Leather Technology and Business Management. He is responsible for the overall management of the company.”</p>",
+            "title": "MR. ARVIND VERMA",
+            "testmunials_position": "MANAGING DIRECTOR"
+          }
+        },
+        "colorful_image_text_YCMCLq": {
+          "type": "Colorful_Image_text",
+          "settings": {
+            "testimunials_data": "<p>“ MR. SHUJA MIRZA has been a Founder and the Driving Force behind RedTape’s sustained Growth and Success since its inception. He holds a Diploma in Leather Technology from London. Having Extensive experience of more than four decades, his expertise extends across Industrial & Leather Technology and Business Management. He is responsible for the overall management of the company.”</p>",
+            "title": "MR. SHUJA MIRZA",
+            "testmunials_position": "MANAGING DIRECTOR"
+          }
+        }
+      },
+      "block_order": [
+        "colorful_image_text_Wg87rg",
+        "colorful_image_text_7ciVUq",
+        "colorful_image_text_PEWaqU",
+        "colorful_image_text_G4iFLf",
+        "colorful_image_text_YCMCLq"
+      ],
+      "settings": {
+        "colorful_heading": "Testimonials",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "newsletter_8zq6J4": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_t8JPD7": {
+          "type": "heading",
+          "settings": {
+            "heading": "Subscribe to our emails",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_9MyTPh": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Get <strong>15% off</strong> on your first order—exclusive to subscribed customers!</p>"
+          }
+        },
+        "email_form_RN8ecy": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_t8JPD7",
+        "paragraph_9MyTPh",
+        "email_form_RN8ecy"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "new_block_section_4ez4nR": {
+      "type": "new-block-section",
+      "blocks": {
+        "custom_block_bbQfBx": {
+          "type": "custom-block",
+          "settings": {
+            "blocksImg": "shopify://shop_images/26537_S6__8901030935961.jpg"
+          }
+        },
+        "custom_block_eK9Thy": {
+          "type": "custom-block",
+          "settings": {
+            "blocksImg": "shopify://shop_images/26537_S7__8901030935961.jpg"
+          }
+        },
+        "custom_block_68KrkB": {
+          "type": "custom-block",
+          "settings": {
+            "blocksImg": "shopify://shop_images/26536_S5__8901030935954.jpg"
+          }
+        },
+        "custom_block_AgjPHN": {
+          "type": "custom-block",
+          "settings": {
+            "blocksImg": "shopify://shop_images/26537_S4__8901030935961.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "custom_block_bbQfBx",
+        "custom_block_eK9Thy",
+        "custom_block_68KrkB",
+        "custom_block_AgjPHN"
+      ],
+      "settings": {}
+    },
+    "schema_access_6xGKwk": {
+      "type": "schema-access",
+      "settings": {
+        "schema-access": "pooja yadav kanpur"
+      }
+    }
+  },
+  "order": [
+    "slideshow_VkJ3gy",
+    "timer_FF8Npb",
+    "categories_collection_TpiG4G",
+    "featured_collection",
+    "our_stores_rcJB7W",
+    "cstm_product_grid_slider_q4PiGL",
+    "cstm_collection_9F4erP",
+    "image_with_text_gzFCnh",
+    "collection_tab_LqTdgy",
+    "featured_collection_tYAA66",
+    "featured_collection_RTUWxh",
+    "featured_collection_YjjHFU",
+    "testimunials_mKY3aW",
+    "newsletter_8zq6J4",
+    "new_block_section_4ez4nR",
+    "schema_access_6xGKwk"
+  ]
+}

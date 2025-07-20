@@ -1,0 +1,208 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+ 
+<div class="colorful_collection  section-{{ section.id }}-padding">
+<div class="colorful_birthdays_heading uppercase">
+    {% if section.settings.colorful_heading != blank %}
+<h2>{{ section.settings.colorful_heading }}</h2>
+    {% endif %}
+</div>
+<div class="colorful_brthdays_container">
+<div class="colorful_birthdays_glider owl-carousel">
+      {% for block in section.blocks %}
+      <div class="colorful_image_text  testimonial_item" >
+       
+            {% if block.settings.colorful_images != blank %}
+             <img
+                src="{{ block.settings.colorful_images | img_url: '200x' }}"
+                loading="lazy"
+                width="100"
+                height="100"
+                alt="Main Image"
+                style="width: 100%; height: auto;"
+>
+            {% endif %}
+       
+      <p class="text_t">{{ block.settings.testimunials_data }}</p>
+      <h2 class="testimonial_author">{{ block.settings.title }}</h2>
+        <p class="testimonial_position">{{ block.settings.testmunials_position }}</p>
+
+</div>
+      {% endfor %}
+</div>
+</div>
+</div>
+ 
+{% schema %}
+{
+  "name": "Collection Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "colorful_heading",
+      "label": "Enter Heading"
+    },
+   
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Colorful_Image_text",
+      "name": "Colorful Image Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "colorful_images",
+          "label": "Choose your image"
+        },
+        {
+          "type": "text",
+          "id": "testimunials_data",
+          "label": "Enter Text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Image link URL"
+        },
+        {
+          "type": "text",
+          "id": "testmunials_position",
+          "label": "Enter Testimunials Postion"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Categories"
+    }
+  ]
+}
+{% endschema %}
+ 
+<script>
+  $(document).ready(function () {
+    var owl = $('.colorful_birthdays_glider');
+    owl.owlCarousel({
+      loop: true, 
+      margin: 30,
+      responsiveClass: true,
+      nav: true, 
+      lazyLoad: true,
+      navText: [
+        `<svg class="owl-prev cstm_prev" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none" style=""><path d="M20 22L14 16L20 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="16.5" cy="16.5" r="16" transform="matrix(-1 0 0 1 33 0)" stroke="white"></circle></svg>`,
+        `<svg class="owl-next cstm_next" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none" style=""><path d="M13 22L19 16L13 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="16.5" cy="16.5" r="16" stroke="white"></circle></svg>`
+      ],
+      slideBy: 3, 
+      responsive: {
+        0: {
+          items: 1,
+          nav: true,
+          loop: true 
+        },
+        600: {
+          items: 2,
+          nav: true,
+          loop: true 
+        },
+        1000: {
+          items: 3,
+          nav: true,
+          loop: true 
+        }
+      }
+    });
+  });
+</script>
+ 
+<style>
+.colorful_image_text.testimonial_item{
+    background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  overflow: hidden;
+ 
+  }
+
+        .text_t{
+           max-height: 280px;
+        }
+           .colorful_image_text p, .colorful_image_text h2{
+             margin: 2px 0px;
+            
+           }
+            .colorful_birthdays_heading h2 {
+              padding:16px 0;
+              text-align: center;
+              font-size: 33px;
+             font-weight: 600;
+              margin:unset;
+              height:70px;
+              }
+              .colorful_brthdays_container {
+               padding: 10px 30px 0 30px;
+                 width: 100%;
+                max-width:100%;
+                position: relative;
+              }
+            button.owl-prev .cstm_prev {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 35%;
+            left: -7px;
+            background-color: #A06E52;
+            border-radius: 50%;
+            }
+           button.owl-next .cstm_next {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 35%;
+            right: -38px;
+             background-color: #A06E52;
+            border-radius: 50%;
+              }
+  .colorful_image_text img {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    /* border-radius: 50%; */
+}
+ .testimonial_author {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}      
+</style>

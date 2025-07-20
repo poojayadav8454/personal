@@ -1,0 +1,392 @@
+<!-- ==============================Multiple tabs======================== -->
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+  }
+
+  @media screen and (min-width: 750px) {
+
+    .section-{{ section.id }}-padding {
+
+      padding-top: {{ section.settings.padding_top }}px;
+
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+
+    }
+
+  }
+{%- endstyle -%}
+
+<div class="multiple_tabs_container {{ section.settings.multiple_tabs_new }} section-{{ section.id }}-padding">
+  <h2>{{ section.settings.collection_tab_text }}</h2>
+  <div class="over_flow_flex_box ">
+    <div class="tabs">
+      {% for block in section.blocks %}
+        <input
+          type="radio"
+
+          name="tab"
+
+          id="tab{{ forloop.index }}"
+
+          {% if forloop.first %}
+            checked="checked"
+          {% endif %}
+        >
+        <label for="tab{{ forloop.index }}" id="label{{ forloop.index }}">{{ block.settings.title }}</label>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+
+  "name": "Collection Slider",
+
+  "settings": [
+
+        {
+
+          "type": "text",
+
+          "id": "collection_tab_text",
+
+          "label": "Collection Heading"
+
+        },
+
+    {
+
+      "type": "header",
+
+      "content": "t:sections.all.padding.section_padding_heading"
+
+    },
+
+    {
+
+      "type": "range",
+
+      "id": "padding_top",
+
+      "min": 0,
+
+      "max": 100,
+
+      "step": 4,
+
+      "unit": "px",
+
+      "label": "t:sections.all.padding.padding_top",
+
+      "default": 36
+
+    },
+
+    {
+
+      "type": "range",
+
+      "id": "padding_bottom",
+
+      "min": 0,
+
+      "max": 100,
+
+      "step": 4,
+
+      "unit": "px",
+
+      "label": "t:sections.all.padding.padding_bottom",
+
+      "default": 36
+
+    }
+
+  ],
+
+  "blocks": [
+
+    {
+
+      "type": "collection_slider",
+
+      "name": "Collection_slider",
+
+      "settings": [
+
+        {
+
+          "type": "text",
+
+          "id": "title",
+
+          "label": "Collection Tab Name"
+
+        }
+
+      ]
+
+    }
+
+  ],
+
+  "presets" :[
+
+    {
+
+      "name":"Collection Slider"
+
+    }
+
+  ]
+
+}
+{% endschema %}
+
+<style>
+        .tabs {
+
+          display: flex;
+
+             justify-content: center;
+
+          align-items: center;
+
+          gap:5%;
+
+          margin-top:20px;
+
+        }
+
+      .multiple_tabs_container {
+
+          background-color: #F2EBE7;
+
+                 padding: 20px 0px 30px 0px;
+
+      }
+
+        .multiple_tabs_container h2 {
+
+          text-align: center;
+
+          font-size: 33px;
+          font-weight: 600;
+
+          margin-top: 0;
+
+          text-transform:uppercase;
+
+        }
+
+        .tabs input[type="radio"] {
+
+          display: none;
+
+        }
+
+        .tabs label {
+
+          order: 1;
+
+          display: block;
+
+          padding: .4rem 5rem;
+          font-weight: 600;
+
+          cursor: pointer;
+
+          transition: background ease 0.2s;
+
+          font-size: 17px;
+
+          /* border: 1px solid cadetblue; */
+
+          box-shadow: 20px 20px 50px #c9beb8;
+
+          border-radius: 7px;
+
+        background-color: #fff;
+
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        }
+
+        .tabs .tab {
+
+          order: 99;
+
+          width: 100%;
+
+          display: none;
+
+          padding: 1rem;
+
+          background: #fff;
+
+        }
+
+        .tabs input[type="radio"]:checked + label {
+
+        background: #EBD3C5;
+
+      }
+
+        .tabs input[type="radio"]:checked + label + .tab {
+
+          display: block;
+
+        }
+
+        .feature-collection-1 {
+
+          display: block;
+
+        }
+
+    .tabs input[type="radio"]:checked + label{
+
+        background: #EBD3C5;
+
+      }
+
+        .feature-collection-2,
+
+        .feature-collection-3,
+
+        .feature-collection-4
+
+      {
+
+          display: none;
+
+        }
+
+      .tabs label:hover
+
+      {
+
+        background-color:#EBD3C5;
+
+      }
+
+    @media(max-width:1024px)
+
+    {
+
+      .tabs {
+
+         gap:3%;
+
+        }
+
+      .tabs label {
+
+           padding: .4rem 3rem;
+
+       font-size:12px;
+
+        }
+
+    }
+
+      @media(max-width:768px)
+
+      {
+
+        .over_flow_flex_box
+
+        {
+
+          /* overflow: auto;
+
+          scrollbar-width: none; */
+
+          text-align: -webkit-center;
+
+         padding: 0 0px 8px 0px;
+
+        }
+
+        /* .tabs
+
+        {
+
+          width:700px;
+
+        } */
+        .multiple_tabs_container h2{
+          font-size: 25px;
+          font-weight: 500;
+        }
+        .multiple_tabs_container {
+
+      padding: 10px 0px 0px 0px;
+
+  }
+
+      }
+</style>
+
+<script>
+  $(document).ready(function() {
+
+    $("#label1").css("background-color", "#EBD3C5");
+
+    function showCollection(collectionToShow) {
+
+      $(".feature-collection-1, .feature-collection-2, .feature-collection-3, .feature-collection-4").css("display", "none");
+
+      $(collectionToShow).css("display", "block");
+
+    }
+
+    $("#tab1").click(function() {
+
+      showCollection(".feature-collection-1");
+
+      $(this).next("label").css("background-color", "#EBD3C5");
+
+      $("#label2, #label3, #label4").css("background-color", "white");
+
+    });
+
+    $("#tab2").click(function() {
+
+      showCollection(".feature-collection-2");
+
+      $(this).next("label").css("background-color", "#EBD3C5");
+
+      $("#label1, #label3, #label4").css("background-color", "white");
+
+    });
+
+    $("#tab3").click(function() {
+
+      showCollection(".feature-collection-3");
+
+      $(this).next("label").css("background-color", "#EBD3C5");
+
+      $("#label1, #label2, #label4").css("background-color", "white");
+
+    });
+
+    $("#tab4").click(function() {
+
+      showCollection(".feature-collection-4");
+
+      $(this).next("label").css("background-color", "#EBD3C5");
+
+      $("#label1, #label2, #label3").css("background-color", "white");
+
+    });
+
+  });
+</script>

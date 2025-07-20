@@ -1,0 +1,207 @@
+<!-- ==================Reviews Section ============================== -->
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="new_product_slider">
+<div class="cstm_image_products page-width section-{{ section.id }}-padding"">
+  <div class="image_product_image">
+    <img src="{{ section.settings.product_image | img_url: 'large' }}" alt="Product Image">
+  </div>
+  
+  <div class="image_product">
+    <div class="product_featured_image">
+    {% for product in collections[ section.settings.featured_url ].products %}
+     <a href="{{ product.url }}"><img src="{{ product.featured_image |img_url:'100x'}}"></a>
+  {% endfor %}
+    </div>
+    <div class="text_featured">
+      <h2>{{ section.settings.featured_heading }}</h2>
+      <p>{{ section.settings.featured_text }}</p>
+      <button type="button" class="featured_product_image">
+        <a href="{{ section.settings.button_url_featured }}">{{ section.settings.button_text }}</a>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+{% schema %}
+{
+  "name": "Product Slider",
+  "settings": [
+      {
+          "type": "collection",
+          "id": "featured_url",
+          "label": "Product URL"
+        },
+     {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "text",
+      "id": "featured_heading",
+      "label": "Enter Heading"
+    },
+    {
+      "type": "text",
+      "id": "featured_text",
+      "label": "Enter Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Enter Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_url_featured",
+      "label": "Enter Collection URL"
+    },
+    
+    {
+      "type": "header",
+      "content": "Padding Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Product Slider"
+    }
+  ]
+}
+{% endschema %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var $slider = $('.product_featured_image');
+    $slider.slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: false,
+      arrows: true,
+      nextArrow: '<svg class="slick-next" viewBox="0 0 100 100"><path d="M 20,50 L 60,90 L 60,85 L 25,50  L 60,15 L 60,10 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>',
+      prevArrow: '<svg class="slick-prev "viewBox="0 0 100 100"><path d="M 20,50 L 60,90 L 60,85 L 25,50  L 60,15 L 60,10 Z" class="arrow"></path></svg>'
+    });
+  });
+</script>
+<style>
+  .new_product_slider
+  {
+    background-color: #eae8e2; 
+  }
+  .cstm_image_products {
+    display: flex;
+    align-items: center;
+    gap:5%;
+    width: 100%;
+}
+  .image_product_image
+  {
+     width: 65%;
+  }
+  .image_product {
+    width: 30%;
+    text-align: -webkit-center;
+    position:relative;
+}
+  .image_product_image img {
+    width: 100%;
+}
+  .text_featured p {
+    text-align: justify;
+    letter-spacing: initial;
+    line-height: 1.7;
+}
+  .text_featured h2 {
+    font-size: 35px;
+}
+  button.featured_product_image {
+    padding: 12px 60px;
+}
+  button.featured_product_image a {
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+}
+  .product_featured_image img
+  {
+   width:100%;
+    max-width:30%;
+  }
+  svg.slick-prev.slick-arrow {
+    position: absolute;
+    fill: #a7a39a;
+    cursor:pointer;
+    width: 45px;
+    height: 45px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 15px;
+    z-index:1;
+}
+  svg.slick-next.slick-arrow {
+    position: absolute;
+    fill: #a7a39a;
+    cursor:pointer;
+    width: 45px;
+    height: 45px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    right: -30px;
+     z-index:1;
+}
+  @media(max-width:1023px)
+  {
+    .cstm_image_products.page-width {
+    flex-direction: column;
+ }
+      .image_product_image
+  {
+     width: 100%;
+  }
+  .image_product {
+    width: 100%;
+  }
+     .product_featured_image img
+  {
+   width:100%;
+    max-width:70%;
+  }
+  }
+</style>

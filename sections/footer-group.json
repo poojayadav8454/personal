@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_qheNfz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hul_logo_200x_f7822da6-d29e-4b87-baa0-2ffb556c34a9.webp",
+            "image_width": 520,
+            "alignment": ""
+          }
+        },
+        "text_V3dCWz": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "subtext": ""
+          }
+        },
+        "link_list_pea7nN": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Quick link</strong>",
+            "menu": "hair-care"
+          }
+        },
+        "link_list_8EmEQh": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Information</strong>",
+            "menu": "footer"
+          }
+        },
+        "text_zN9qEN": {
+          "type": "text",
+          "settings": {
+            "heading": "<strong>Contact Us</strong>",
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p><p>[Working Hours - Mon to Sat 09.00AM to 06.00PM]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "image_qheNfz",
+        "text_V3dCWz",
+        "link_list_pea7nN",
+        "link_list_8EmEQh",
+        "text_zN9qEN"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

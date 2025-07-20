@@ -1,0 +1,36 @@
+<button id ="pro_api_btn">
+ {{ 'Access API' }} 
+</button>
+
+<script>
+  let api =document.querySelector("#pro_api_btn");
+  console.log(api);
+  api.addEventListener('click',function(){
+    const fetchShopifyData = async () => {
+const API_URL = "https://pooja-yadav-testing.myshopify.com/admin/api/unstable/products.json";
+    const ACCESS_TOKEN = "96cf1b9402a2053231763968e2e8dbb8 "; // Admin API Access Token
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Shopify-Access-Token": ACCESS_TOKEN
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data); // Shopify data
+        } else {
+            console.error("Error:", response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error("Fetch Error:", error);
+    }
+};
+
+fetchShopifyData();
+
+  })
+</script>

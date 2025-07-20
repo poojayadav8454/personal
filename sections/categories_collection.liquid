@@ -1,0 +1,158 @@
+<!-- ==================Reviews Section ============================== -->
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="categories_background section-{{ section.id }}-padding page-width" >
+  <div class="categories_conainer">
+  <h2>{{ section.settings.colelction_heading }}</h2>
+  <div class="categories_slider ">
+    {% for block in section.blocks %}
+      <div class="categories_img_text">
+        <a href="{{ block.settings.categoriues_name_name }}">
+        <img src="{{ block.settings.categories_image | img_url:'' }}">
+        <p>{{ block.settings.categoriues_name }}</p>
+        </a>
+      </div>
+    {% endfor %}
+</div>
+  </div>
+</div>
+    {% schema %}
+{
+  "name": "Categories Collection",
+  "settings": [
+      {
+          "type": "text",
+          "id": "colelction_heading",
+          "label": "Enter Categories Heading"
+        },
+    {
+      "type": "header",
+      "content": "Padding Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+     "blocks": [
+    {
+      "type": "slider",
+      "name": "slider Block",
+      "settings": [
+          {
+    "type": "url",
+    "id": "categoriues_name_name",
+    "label": "categoriues Name"
+    },
+        {
+        "type":"image_picker",
+        "id":"categories_image",
+        "label":"Chose Your Image"
+        },
+       {
+    "type": "text",
+    "id": "categoriues_name",
+    "label": "categoriues Name"
+    }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "categories Collection"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .categories_conainer h2 {
+    text-align: center;
+    color: #0e0e0e;
+    font-size: 37px;
+    font-weight: 600;
+    line-height: 40px;
+    background: linear-gradient(270.05deg, #9d6d1d 40.55%, #e0c168 50.69%, #9d7431 60.46%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+        margin-top: 0;
+}
+  .categories_slider {
+    display: flex;
+    flex-wrap: wrap;
+}
+  .categories_img_text {
+    width: 25%;
+    padding: 20px;
+}
+  .categories_img_text img
+  {
+    width:100%;
+    border-radius: 50%;
+  }
+  .categories_img_text p {
+    text-align: center;
+    color: #000;
+    font-weight: 600;
+    font-size: 16px;
+}
+  @media(max-width:767px)
+  {
+   .categories_img_text {
+    width: 33.33%;
+    padding: 10px;
+  }
+  }
+   @media(max-width:424px)
+  {
+   .categories_img_text {
+    width: 50%;
+    padding: 10px;
+  }
+    .categories_conainer h2 {
+    font-size: 35px;
+}
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+{% comment %}  How TO Assign Variable String  {% endcomment %}
+{% assign text='hello Imran how are you' %}
+{{ text }}
+<br>
+
+{% comment %}  How TO Assign Variable Number  {% endcomment %}
+
+{% assign num = 100 %}
+{{ num }}
+
+<br>
+  {% assign number1 = 20 %}
+  {% assign number2 = 20 %}
+
+{{ number1 | plus : number2 }} <br>
+{{ number1 | minus : number2 }} <br>
+{{ number1 | times : number2 }} <br>
+{{ number1 | divided_by : number2 }} <br>
+
+{% if number1 >30 %}
+{{" number is greater than 10" }}
+{% else %}
+  {{ "Number is invalid" }}
+  {% endif %}
+<br>
+{% assign variable = "value2" %} 
+{% case variable %}
+  {% when "value1" %}
+    {{ "This is the first expression" }}
+  {% when "value2" %}
+    {{ "This is the second expression" }}
+  {% else %}
+    {{ "This is the default expression if no case matches" }}
+{% endcase %}
+
+
+<br>
+{% assign variablenew="health" %}
+{% case variablenew %}
+  {% when "health1" %}
+    {{ "print health value" }}
+  {% when "new_health" %}
+    {{ "Print new health value" }}
+  {% else %}
+    {{ "Default Value" }}
+{% endcase %}
+
+
+<br>
+{% assign name = "Imran" %}
+
+{% unless name == "Imran11" %}
+  {{ "One Value" }}
+{% endunless %}
+
+
+
+

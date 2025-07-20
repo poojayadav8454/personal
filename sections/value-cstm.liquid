@@ -1,0 +1,38 @@
+<!-- value-cstm.liquid -->
+<h1>{{ 'values'| capitalize }}</h1>
+ {%- for block in section.blocks -%}
+{% assign values = block.settings.values | split: ','  %}
+<select>
+  {%- for value in values -%}
+  <option value="">{{ value | strip | escape | capitalize }}</option>
+{%- endfor -%}
+</select> 
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "value",
+    "settings": [],
+     "blocks": [
+
+    
+    {
+      "type": "text",
+      "name": "value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "values",
+          "label": "value",
+          "default": "Custom field"
+        }
+      ]
+    }
+     ],
+    "presets": [
+      {
+        "name": "value"
+      }
+    ]
+  }
+{% endschema %}
