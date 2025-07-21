@@ -642,8 +642,8 @@
       "type": "collection-grid-tab",
       "name": "Collection Grid",
       "settings": {
-        "collection": "men",
-        "text": "Custom Text"
+        "collection": "women",
+        "text": "Women"
       }
     }
   },
