@@ -94,7 +94,7 @@
 
   {% for block in section.blocks %}
     <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
-     {{ block.settings.cstm_tab_title }}
+    <div class="custom-content"> {{ block.settings.cstm_tab_title }}</div>
       <ul class="scroll-list">
         {% for product in block.settings.collection.products limit: 20 %}
           <li class="scroll-item">
