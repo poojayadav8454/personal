@@ -356,7 +356,7 @@
               </quick-add-modal>
             {%- else -%}
            
-              <product-form kkkk data-section-id="{{ section.id }}">
+              <product-form data-section-id="{{ section.id }}">
                 {%- form 'product',
                   card_product,
                   id: product_form_id,
@@ -405,14 +405,11 @@
                   </button>
                 {%- endform -%}
               </product-form>
-            
-              <!-- {% render 'atc', product:card_product  %} -->
             {%- endif -%}
           </div>
 
        
   
-         <!-- {% render 'atc' %} -->
         {% elsif quick_add == 'bulk' %}
           {% if card_product.variants.scard_productize == 1 %}
             <quick-add-bulk
