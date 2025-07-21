@@ -1,87 +1,131 @@
 {% schema %}
 {
-  "name": "Tabbed Collections",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Featured Collections"
-    }
-  ],
+  "name": "Tabbed Collection",
+  "settings": [],
   "blocks": [
     {
       "type": "collection_tab",
       "name": "Collection Tab",
       "settings": [
         {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
           "type": "collection",
           "id": "collection",
-          "label": "Select Collection"
+          "label": "Collection"
         }
       ]
     }
   ],
-  "max_blocks": 10,
+  "max_blocks": 5,
   "presets": [{
-    "name": "Tabbed Collections",
+    "name": "Tabbed Collection",
     "category": "Custom"
   }]
 }
 {% endschema %}
 
-<div class="tabbed-collections">
-  <h2>{{ section.settings.title }}</h2>
+<style>
+.tab-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.tab-button {
+  padding: 10px 18px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  background-color: #eee;
+  font-weight: 600;
+}
+.tab-button.active {
+  background-color: #00BCD4;
+  color: white;
+}
+.tab-pane {
+  display: none;
+}
+.tab-pane.active {
+  display: block;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.product-card img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+.product-card h3 {
+  font-size: 16px;
+  margin: 8px 0;
+}
+.product-card .price {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 8px 0;
+}
+.product-card .btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background: black;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+</style>
 
-  <ul class="tabs">
+<div class="tab-collection-wrapper">
+  <div class="tab-buttons">
     {% for block in section.blocks %}
-      <li class="tab {% if forloop.first %}active{% endif %}" data-tab="tab-{{ forloop.index }}">
-        {{ block.settings.collection.title }}
-      </li>
-    {% endfor %}
-  </ul>
-
-  <div class="tab-content">
-    {% for block in section.blocks %}
-      <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index }}">
-        <div class="products-grid">
-          {% for product in block.settings.collection.products limit: 8 %}
-            <div class="product-item">
-              <a href="{{ product.url }}">
-                <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
-                <p>{{ product.title }}</p>
-              </a>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
+      <button class="tab-button {% if forloop.first %}active{% endif %}" data-tab="tab-{{ forloop.index0 }}">
+        {{ block.settings.tab_title }}
+      </button>
     {% endfor %}
   </div>
-</div>
 
-<style>
-.tabs { display: flex; gap: 1rem; cursor: pointer; margin-bottom: 20px; }
-.tab { padding: 10px 20px; border: 1px solid #ccc; }
-.tab.active { background: #000; color: white; }
-.tab-pane { display: none; }
-.tab-pane.active { display: block; }
-.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-</style>
+  {% for block in section.blocks %}
+    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
+      <div class="products-grid">
+        {% for product in block.settings.collection.products limit: 10 %}
+          <div class="product-card">
+            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+            <h3>{{ product.title }}</h3>
+            <div class="price">{{ product.price | money }}</div>
+            <a href="{{ product.url }}" class="btn">ADD TO CART</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const tabs = document.querySelectorAll('.tab');
+  const buttons = document.querySelectorAll('.tab-button');
   const panes = document.querySelectorAll('.tab-pane');
 
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
-      // Remove active from all
-      tabs.forEach(t => t.classList.remove('active'));
+  buttons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
       panes.forEach(p => p.classList.remove('active'));
 
-      // Add active to clicked
-      tab.classList.add('active');
-      panes[index].classList.add('active');
+      btn.classList.add('active');
+      panes[i].classList.add('active');
     });
   });
 });
