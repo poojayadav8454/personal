@@ -1,499 +1,185 @@
-<div class="page-width">
-  <div class="tab-container ">
-    {% for block in section.blocks %}
-      <div class="tab-links">
-        <a class="tab-links-link link-active" href="#tab1">MEN</a>
-        <a class="tab-links-link" href="#tab2">WOMEN</a>
-      </div>
+{{ 'component-product-listing.css' | asset_url | stylesheet_tag }}
 
-      <div class="tab-content-container">
-        <div class="content-active" id="tab1div">
-          <div class="alignment">
-            <div class="content_alignment">
-              {% for collection in block.settings.collection_list %}
-                <div class="child_Parent">
-                  <div class="child_collection">
-                    <div class="content_part">
-                      <h3 class="title__">{{ collection.title }}</h3>
-                      <p class="content__">
-                        Your single source in the cloud. Fusion’s advanced cloud services platform enables.
-                      </p>
-                      <a class="collection_url" href="{{ collection.url }}">
-                        <button>SHOP NOW</button>
-                      </a>
-                    </div>
-                    <div class="image_part">
-                      <img src="{{ collection.image | image_url }}" height="360" width="250">
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-            <div class="content_alignment">
-              {% for collection in block.settings.collection_list1 %}
-                <div class="child_Parent1">
-                  <div class="child_collection">
-                    <div class="content_part">
-                      <h3 class="title__">{{ collection.title }}</h3>
-                      <p class="content__">
-                        Your single source in the cloud. Fusion’s advanced cloud services platform enables.
-                      </p>
-                      <a class="collection_url" href="{{ collection.url }}">
-                        <button>SHOP NOW</button>
-                      </a>
-                    </div>
-                    <div class="image_part">
-                      <img src="{{ collection.image | image_url }}" height="360" width="250">
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-        <div class="tab-hide fade" id="tab2div">
-          <div class="alignment">
-            <div class="content_alignment">
-              {% for collection in block.settings.collection_list2 %}
-                <div class="child_Parent">
-                  <div class="child_collection">
-                    <div class="content_part">
-                      <h3 class="title__">{{ collection.title }}</h3>
-                      <p class="content__">
-                        Your single source in the cloud. Fusion’s advanced cloud services platform enables.
-                      </p>
-                      <a class="collection_url" href="{{ collection.url }}">
-                        <button>SHOP NOW</button>
-                      </a>
-                    </div>
-                    <div class="image_part">
-                      <img src="{{ collection.image | image_url }}" height="360" width="250">
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-            <div class="content_alignment">
-              {% for collection in block.settings.collection_list3 %}
-                <div class="child_Parent1">
-                  <div class="child_collection">
-                    <div class="content_part">
-                      <h3 class="title__">{{ collection.title }}</h3>
-                      <p class="content__">
-                        Your single source in the cloud. Fusion’s advanced cloud services platform enables.
-                      </p>
-                      <a class="collection_url" href="{{ collection.url }}">
-                        <button>SHOP NOW</button>
-                      </a>
-                    </div>
-                    <div class="image_part">
-                      <img src="{{ collection.image | image_url }}" height="360" width="250">
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="trimmer-category container">
+  <ul class="trimmer-cat-ul">
+    {% for block in section.blocks %}
+      <li
+        class="trimmer-cat-li tab-menu-trimmer {% unless forloop.index == 1 %}notIndex-one {% endunless %} {% if forloop.index == 1 %}tab-color{% endif %} {% if block.settings.icon-tab == blank %}image-blank-tab{% endif %}"
+        dataId="custom-{{ forloop.index }}"
+      >
+        {% if block.settings['icon-tab'] != '' %}
+          <span>{{ block.settings['icon-tab'] }}</span>
+        {% endif %}
+        {% if block.settings['icon-tab'] == blank %}
+          <span class="blank-image-div"></span>
+        {% endif %}
+        <p
+          class=""
+        >
+          {{ block.settings.tab_text }}
+        </p>
+      </li>
     {% endfor %}
-  </div>
+  </ul>
 </div>
 
+<div class="collection custom-product-grid container">
+  {%- for block in section.blocks -%}
+    <div
+      class="main-product-grid tab-collection-product {% if forloop.index == 1 %}collection-index{% else %}not-collection-index{% endif %}"
+      id="custom-{{ forloop.index }}"
+    >
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: '1440' | image_tag: loading: 'lazy', class: 'trimmer-grid' }}
+      {% endif %}
+      <ul
+        class="productListing {% if layout == '1' %} productList{% else %} productGrid column-{{ '4' }}{% endif %} list-{{ '2' }} list-unstyled"
+        id="main-collection-product-grid"
+        data-id="{{ section.id }}"
+      >
+        {% assign productgrid = block.settings.collection %}
+        {%- for product in productgrid.products -%}
+          <li class="product customproduct custompdp-{{ forloop.index }} custom---{{ productgrid.handle }}--{{ forloop.index }}">
+            {% render 'custom-product-card',
+              product_card_product: product,
+              serial: forloop.index,
+              sectionId: section.id,
+              show_list: true,
+              loading: true
+            %}
+          </li>
+        {%- endfor -%}
+        {% if productgrid.metafields.custom.product_collection %}
+          {% if productgrid.metafields.custom.product_collection.value != blank %}
+            <h2 class="grid-head">{{ section.settings.text }}</h1>
+            <div class="main-meta-product">
+              <div class="center_product">
+                {% for product_reference in productgrid.metafields.custom.product_collection.value %}
+                  {% render 'collection-product-page', product: product_reference %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        {% else %}
+
+        {% endif %}
+      </ul>
+    </div>
+  {%- endfor -%}
+</div>
+<div class="mobile-product-slider">
+  <h1>{{ section.settings['text-scroll'] }}</h1>
+  <div class="show-in-mobile">
+    {% render 'custom-product-page' %}
+  </div>
+</div>
 <style>
-
-
-.link-active {position: relative;}
-.link-active::after {
-  content: '';
-  position: absolute;
-    bottom: -10px;
-    border-bottom: 2px solid #d65900;
-  width: 100%;
-    left: 0;
-  /* transform: scale(0);
-  transition: none;
-  transform-origin: 0 50%; */
-}
-/* .link-active::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
+  .main-product-grid .main-meta-product .center_product{
+        /* padding: 0 0 0 8px; */
+    gap:10px;
+  }
+  .trimmer-grid{
     width: 100%;
-    border-bottom: 2px solid currentColor;
-    transform: scale(0);
-    transform-origin: 0 50%;
-    transition: none;
-} */
-.is_active::after{
-   transform: scale(1);
-    transition: transform 0.5s ease;
-}
+    height: auto;
+  }
+  .tab-menu-trimmer p{
+    margin:0;
 
-.title__ {
-    font-size: 30px;
+  }
+  .not-collection-index{
+        display: none;
+  }
+  /* tab css */
+
+    .trimmer-category {
+      max-width: 100%;
+      width: 800px;
+      position: relative;
+      margin: 0 auto;
+      /* padding-top:30px; */
+  }
+  ul.trimmer-cat-ul {
+      max-width: 100%;
+      width: 800px;
+      margin: 0 auto 20px auto;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 25px;
+      /* justify-content: center; */
+      /* border: 2px solid #ddd; */
+      padding: 6px 0;
+  }
+  li.trimmer-cat-li {
+     padding: 10px 48px;
+    border-radius: 10px;
     font-weight: bold;
-    text-transform: uppercase;
-}
-      .collection_url{
-        text-decoration: none;
-      }
-    .collection_url button{
-       cursor: pointer;
-      padding: 10px 25px;
-      background:#d65900;
-      color: white;
-      transition: padding-right 0.3s, background 0.3s, opacity 1s;
-      border-radius: 6px;
-      min-width: 100px;
-      outline: none;
-    border: none;
-    }
-      .slick-next{
-        position: absolute;
-        right: 280px;
-      }
-      .slick-prev{
-         position: absolute;
-         left: 6px;
-      }
-/* .tab-links{
-      display: flex;
-    justify-content: space-between;
-} */
-      .slick-prev , .slick-next, .slick-prev:hover, .slick-next:hover{
-        /* background:red; */
-        z-index: 9999;
-      }
-
-      .image_part img{
-        width:100%;
-        border-radius: 0 40px 40px 0;
-      }
-      .content_alignment{
-          width: calc(50% - 10px);
-      }
-      /* .image_part, .content_part{
-        width:50%;
-        height:auto;
-      } */
-      .child_collection{
-display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-      }
-      .alignment{
-        display:flex;
-        justify-content: space-between;
-      }
-      .child_Parent{
-      display:flex;
-      justify-content: space-between;
-        background: gainsboro;
-        border-radius: 40px;
-        box-shadow: 0px 9px 0px 0px #613B20 !important;
-        margin-bottom: 10px;
-      }
-    .child_Parent1{
-       background: gainsboro;
-       border-radius: 40px;
-      box-shadow: 0px 9px 0px 0px #613B20 !important;
-      margin-bottom: 10px;
-      /* min-height: 360px; */
-    }
-          .page-wrapper {
-          width: 600px;
-          margin: 0 auto;
-        }
-
-
-        .teb-container {
-          width: 100%;
-          overflow-x: scroll;
-          overflow-y: hidden;
-          white-space: nowrap;
-        }
-
-        .tab-links {
-          display: flex;
-          /* background-color: #003366; */
-          padding: 24px;
-          width: 100%;
-          text-align: center;
-          justify-content: space-between;
-        }
-
-        .tab-links a:not(:first-child) {
-          padding-left: 48px;
-        }
-
-        .scroll {
-            white-space: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
-        }
-
-        .tab-links-link {
-          margin-right: 10px;
-          padding: 24px;
-          text-decoration: none;
-          color: #fff;
-          font-size: 16px;
-          font-weight: 600;
-          width:50%;
-              border: 1px solid #D65900;
-    color: #D65900;
-        }
-
-        .tab-links-link:hover {
-          text-decoration: none;
-          background-color: #D65900;
-          color:white;
-        }
-
-        .link-active {
-          color:white;
-          text-decoration: none;
-         
-          background-color:#D65900;
-        }
-
-        h3 {
-          font-size: 24px;
-           color: #003366;
-        }
-
-         .tab-content-container {
-           display: block;
-           /* border: 1px solid #ebebeb;
-           border-top: 10px solid #6699cc; */
-           width: 100%;
-           padding: 24px 0;
-        }
-
-    .content_part {
-      /* padding-left: 15px; */
-          padding-left: 35px;
-    padding-right: 17px;
-  }
-        .tab-content {
-           display: block;
-           opacity: 1;
-        }
-
-        .content-active {
-          display: block;
-          opacity: 1;
-        }
-
-        .tab-hide {
-          display: none;
-        }
-
-        .fade {
-            opacity: 0;
-            -webkit-transition: opacity .15s linear;
-            -o-transition: opacity .15s linear;
-            transition: opacity .15s linear;
-        }
-
-  @media only screen and (max-width: 1024px) {
-    .child_collection {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 10px;
-    /* justify-content: center; */
-    align-items: center;
-}
-     .content_part {
-      order:2;
-}
-      .image_part img{
-      border-radius:unset;
-              width: 100%;
-                height: 250px;
-    }
-     .child_Parent,.child_Parent1{
-      padding:25px;
-    }
-      .slick-prev {
-    position: absolute;
-    left: 43px;
-}
-    .slick-next {
-    position: absolute;
-    right: 43px;
-
-}
-    .title__ {
-      margin: 0;
-        text-align: center;
-    font-size: 25px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-  
-  .content__,.content_part{
-      text-align: center;
-    }
-    .slick-next, .slick-prev{
-      top: 56%;
-    }
+    font-size: 17px;
+    transition: 0.4s;
+    /* border: 1px solid #31bad2; */
+    background:white;
+    text-align:center;
   }
 
+    @media(max-width:450px){
+      ul.trimmer-cat-ul{gap:5%}
+    }
 
-  @media only screen and (max-width: 426px) {
-    .child_collection {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 10px;
-    align-items: center;
-}
-    .alignment {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-    .child_Parent,.child_Parent1{
-      padding:25px;
-    }
-    .content_part {
-      order:2;
-}
-    .image_part img{
-      border-radius:unset;
-              width: 100%;
-                height: 250px;
-    }
-    .slick-next, .slick-prev{
-          top: 64%;
-    }
-    .content__,.content_part{
-      text-align: center;
-    }
-    .title__ {
-      margin: 0;
-        text-align: center;
-    font-size: 25px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-    .content_alignment{
-      width: 100%;
-      margin-bottom: 20px;
-    }
-    .content_part {
-    padding-left: 15px;
-}
-    .slick-prev {
-    position: absolute;
-    left: 43px;
-}
-    .slick-next {
-    position: absolute;
-    right: 43px;
-
-}
-    .tab-links-link{
-      padding:8px;
-    }
-    .tab-links a:not(:first-child) {
-    padding-left: 10px;
-}
-  }
- @media screen and (min-device-width: 427px) and (max-device-width: 768px) { 
- /* .title__ {
-    font-size: 23px;
- } */
- }
-
+  /* tab css */
 </style>
-
 {% schema %}
-{
-  "name": "Collection Tab",
-  "tag": "section",
-  "class": "slideshow",
-  "limit": 1,
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Collection Title"
-    }
-  ],
-  "blocks": [
-     {
-       "name": "Collection",
-       "type": "collection",
-       "settings": [
-
-         {
-           "type": "text",
-           "id": "title",
-           "label": "Title"
-         },
-        {
-          "type": "collection_list",
-          "id": "collection_list",
-          "label": "Mens Collections Left Side"
-        },
-        {
-          "type": "collection_list",
-          "id": "collection_list1",
-          "label": "Mens Collections Right Side"
-        },
-        {
-          "type": "collection_list",
-          "id": "collection_list2",
-          "label": "Women Collections Left Side"
-        },
-        {
-          "type": "collection_list",
-          "id": "collection_list3",
-          "label": "Women Collections Right Side"
-        }
-  ]
-     }
-  ],
-  "presets": [
-    {
-      "name": "Collection Tab"
-    }
-  ]
-}
+  {
+    "name": "Trimmer Tab",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Heading",
+        "default":"Specific Product"
+      },
+      {
+        "type": "text",
+        "id": "text-scroll",
+        "label": "Heading",
+        "default":"#Khulkekhel Featured"
+      }
+    ],
+    "blocks": [
+  {
+    "type": "grid",
+    "name": "Trimmer Grid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "tab_text",
+        "label": "Tab Name"
+      },
+      {
+        "type": "html",
+        "id": "icon-tab",
+        "label": "Tab Icon"
+      },
+      {
+        "type": "header",
+        "content": "Collection Content"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Choose Collection"
+      }
+    ]
+  }
+],
+    "presets": [
+      {
+        "name": "Trimmer Tab"
+      }
+    ]
+  }
 {% endschema %}
-
-<script>
-  $(document).ready(function() {
-       function initializeSlick() {
-           $('.content_alignment').slick({
-             infinite: true,
-             slidesToShow: 1,
-             slidesToScroll: 1
-           });
-         };
-         initializeSlick();
-         $('.tab-links-link').click(function() {
-           $('.content_alignment').slick('unslick');
-
-           $('.tab-links-link').each(function() {
-             var hashValue = this.href.split('#');
-             $('a[href$="'+hashValue[1]+'"]').removeClass("link-active");
-             $('a[href$="'+hashValue[1]+'"]').removeClass("is_active");
-             $("#" + hashValue[1] + 'div').removeClass("content-active").addClass( "tab-hide fade" );
-           });
-
-           var hashValue = this.href.split('#');
-           $('a[href$="'+hashValue[1]+'"]').addClass("link-active");
-           $('a[href$="'+hashValue[1]+'"]').addClass("is_active");
-           $("#" + hashValue[1] + 'div').removeClass( "tab-hide fade" ).addClass( "content-active" );
-
-            initializeSlick();
-         });
-     });
-</script>
