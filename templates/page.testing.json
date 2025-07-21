@@ -24,21 +24,24 @@
           "type": "collection_tab",
           "settings": {
             "tab_title": "Men",
-            "collection": "men"
+            "collection": "men",
+            "cstm_tab_title": "Hello"
           }
         },
         "collection_tab_BnyY9q": {
           "type": "collection_tab",
           "settings": {
             "tab_title": "Women",
-            "collection": "women"
+            "collection": "women",
+            "cstm_tab_title": ""
           }
         },
         "collection_tab_qpmRwG": {
           "type": "collection_tab",
           "settings": {
             "tab_title": "Combo",
-            "collection": "combo"
+            "collection": "combo",
+            "cstm_tab_title": ""
           }
         }
       },
