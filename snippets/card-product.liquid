@@ -307,6 +307,7 @@
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
         {% if quick_add == 'standard' %}
+       {% comment %}
           <div class="quick-add no-js-hidden">
             {%- liquid
               assign qty_rules = false
@@ -405,6 +406,8 @@
               </product-form>
             {%- endif -%}
           </div>
+        {% endcomment %}
+          {% render 'atc',card_product: product %}
         {% elsif quick_add == 'bulk' %}
           {% if card_product.variants.size == 1 %}
             <quick-add-bulk
