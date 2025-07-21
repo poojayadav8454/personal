@@ -599,25 +599,29 @@
           "type": "custom-block",
           "settings": {
             "blocksImg": "shopify://shop_images/26537_S6__8901030935961.jpg"
-          }
+          },
+          "blocks": {}
         },
         "custom_block_eK9Thy": {
           "type": "custom-block",
           "settings": {
             "blocksImg": "shopify://shop_images/26537_S7__8901030935961.jpg"
-          }
+          },
+          "blocks": {}
         },
         "custom_block_68KrkB": {
           "type": "custom-block",
           "settings": {
             "blocksImg": "shopify://shop_images/26536_S5__8901030935954.jpg"
-          }
+          },
+          "blocks": {}
         },
         "custom_block_AgjPHN": {
           "type": "custom-block",
           "settings": {
             "blocksImg": "shopify://shop_images/26537_S4__8901030935961.jpg"
-          }
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -633,6 +637,11 @@
       "settings": {
         "schema-access": "pooja yadav kanpur"
       }
+    },
+    "collection_grid_tab_VxMGDG": {
+      "type": "collection-grid-tab",
+      "name": "Collection Grid",
+      "settings": {}
     }
   },
   "order": [
@@ -651,6 +660,7 @@
     "testimunials_mKY3aW",
     "newsletter_8zq6J4",
     "new_block_section_4ez4nR",
-    "schema_access_6xGKwk"
+    "schema_access_6xGKwk",
+    "collection_grid_tab_VxMGDG"
   ]
 }
