@@ -1,6 +1,8 @@
 <div class="collection grid">
   {% assign  product = section.settings.collection %}
+ <h2>{{ section.settings.text }}</h2>
   <ul>
+    
     {% for product in product %}
     <li>
               {% render 'card-product',
