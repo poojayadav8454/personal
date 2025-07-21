@@ -54,40 +54,7 @@
 .tab-pane.active {
   display: block;
 }
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
-.product-card {
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 12px;
-  text-align: center;
-}
-.product-card img {
-  max-width: 100%;
-  border-radius: 6px;
-}
-.product-card h3 {
-  font-size: 16px;
-  margin: 8px 0;
-}
-.product-card .price {
-  font-weight: bold;
-  font-size: 18px;
-  margin: 8px 0;
-}
-.product-card .btn {
-  display: inline-block;
-  padding: 10px 16px;
-  background: black;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-  margin-top: 10px;
-}
-  .scroll-list {
+.scroll-list {
   display: flex;
   overflow-x: auto;
   gap: 16px;
@@ -97,14 +64,18 @@
   list-style: none;
   margin: 0;
 }
-
+.scroll-list::-webkit-scrollbar {
+  display: none;
+}
+.scroll-list {
+  scrollbar-width: none;
+}
 .scroll-item {
   flex: 0 0 auto;
   scroll-snap-align: start;
-  min-width: 280px; /* Mobile size */
+  min-width: 280px;
   max-width: 320px;
 }
-
 </style>
 
 <div class="tab-collection-wrapper">
@@ -118,15 +89,13 @@
 
   {% for block in section.blocks %}
     <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
-      <div class="products-grid">
-          <ul class="scroll-list">
-            {% for product in collection.products %}
-              <li class="scroll-item">
-                {% render 'card-product', card_product: product %}
-              </li>
-            {% endfor %}
-          </ul>
-      </div>
+      <ul class="scroll-list">
+        {% for product in block.settings.collection.products limit: 20 %}
+          <li class="scroll-item">
+            {% render 'card-product', card_product: product %}
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   {% endfor %}
 </div>
