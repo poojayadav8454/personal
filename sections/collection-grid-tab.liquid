@@ -101,14 +101,13 @@
   {% for block in section.blocks %}
     <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
       <div class="products-grid">
-        {% for product in block.settings.collection.products limit: 10 %}
-          <div class="product-card">
-            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-            <h3>{{ product.title }}</h3>
-            <div class="price">{{ product.price | money }}</div>
-            <a href="{{ product.url }}" class="btn">ADD TO CART</a>
-          </div>
-        {% endfor %}
+          <ul class="scroll-list">
+              {% for product in block.settings.collection.products limit: 10 %}
+                <li class="scroll-item">
+                  {% render 'card-product', card_product: product %}
+                </li>
+              {% endfor %}
+            </ul>
       </div>
     </div>
   {% endfor %}
