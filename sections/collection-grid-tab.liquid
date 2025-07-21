@@ -1,6 +1,6 @@
 <div class="collection grid">
-  {% assign  product = section.settings.collection.products %}
- <h2>{{ section.settings.text }}</h2>
+  <!-- {% assign  product = section.settings.collection.products %} -->
+ <!-- <h2>{{ section.settings.text }}</h2>
   <ul>
     
     {% for product in product %}
@@ -10,11 +10,17 @@
             %}
     </li>
     {% endfor %}
-  </ul>
+  </ul> -->
+
 </div>
 {% schema %}
   {
     "name": "Collection Grid",
+    "blocks": [
+      {
+        "type": "Collection-grid"
+      }
+    ],
     "settings": [
        {
         "type": "collection",
@@ -28,6 +34,7 @@
         "default": "Custom Text"
       }
     ],
+   
     "presets": [
       {
         "name": "Collection Grid"
