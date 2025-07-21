@@ -87,6 +87,24 @@
   text-decoration: none;
   margin-top: 10px;
 }
+  .scroll-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 0 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  list-style: none;
+  margin: 0;
+}
+
+.scroll-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  min-width: 280px; /* Mobile size */
+  max-width: 320px;
+}
+
 </style>
 
 <div class="tab-collection-wrapper">
@@ -102,12 +120,12 @@
     <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
       <div class="products-grid">
           <ul class="scroll-list">
-              {% for product in block.settings.collection.products limit: 10 %}
-                <li class="scroll-item">
-                  {% render 'card-product', card_product: product %}
-                </li>
-              {% endfor %}
-            </ul>
+            {% for product in collection.products %}
+              <li class="scroll-item">
+                {% render 'card-product', card_product: product %}
+              </li>
+            {% endfor %}
+          </ul>
       </div>
     </div>
   {% endfor %}
