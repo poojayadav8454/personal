@@ -641,7 +641,10 @@
     "collection_grid_tab_VxMGDG": {
       "type": "collection-grid-tab",
       "name": "Collection Grid",
-      "settings": {}
+      "settings": {
+        "collection": "men",
+        "text": "Custom Text"
+      }
     }
   },
   "order": [
