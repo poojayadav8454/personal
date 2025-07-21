@@ -11,13 +11,48 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "collection_grid_tab_GWWf3P": {
+      "type": "collection-grid-tab",
+      "blocks": {
+        "collection_tab_irDiq3": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_title": "Men",
+            "collection": "men"
+          }
+        },
+        "collection_tab_BnyY9q": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_title": "Women",
+            "collection": "women"
+          }
+        },
+        "collection_tab_qpmRwG": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_title": "Combo",
+            "collection": "combo"
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_irDiq3",
+        "collection_tab_BnyY9q",
+        "collection_tab_qpmRwG"
+      ],
+      "name": "Tabbed Collection",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "collection_grid_tab_GWWf3P"
   ]
 }
