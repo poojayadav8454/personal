@@ -357,6 +357,7 @@
               </quick-add-modal>
             {%- else -%}
             {% comment %}
+            {% endcomment %}
               <product-form data-section-id="{{ section.id }}">
                 {%- form 'product',
                   card_product,
@@ -406,7 +407,7 @@
                   </button>
                 {%- endform -%}
               </product-form>
-            {% endcomment %}
+            
               <!-- {% render 'atc', product:card_product  %} -->
             {%- endif -%}
           </div>
