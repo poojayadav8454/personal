@@ -1,243 +1,88 @@
-
-<div class="tab-container">
-  <!-- Tabs -->
-  <div class="tab-buttons">
-    <div class="tab-tab1">
-       <div class="tab-title">Happy Corners Start Here </div>
-    {% for block in section.blocks %}
-      <button class="tab-button {% if forloop.first %}active{% endif %}" data-tab="tab-{{ block.id }}">
-        {{ block.settings.tab_title }}
-      </button>
-    {% endfor %}
-    </div>
-   
-     <div class="carousel-navigation">
-      <button class="carousel-prev"> <img class="" src='https://cdn.shopify.com/s/files/1/0719/5410/4632/files/back-arrow.png?v=1743670467' width="" height="" loading="lazy" alt="Login"> </button>
-      <button class="carousel-next"> <img class="" src='https://cdn.shopify.com/s/files/1/0719/5410/4632/files/right-arrow_6.png?v=1743670406' width="" height="" loading="lazy" alt="Login"> </button>
-  </div>
-  </div>
-
-  <!-- Navigation Buttons Wrapper -->
- 
-
-  <!-- Product Carousels -->
-  <div class="tab-content-other">
-  {% for block in section.blocks %}
-    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ block.id }}">
-      <div class="carousel-container carousel-scroll-custom">
-        <div class="product-carousel">
-          {% assign product_limit = block.settings.product_limit | default: 4 %}
-          {% for product in block.settings.products limit: product_limit %}
-            <div class="product-item">
-              {% if product.metafields.custom.best_seller %}
-                <span class="badge best-seller">Best Seller</span>
-              {% endif %}
-              <div class="product-image-container">
-                <a href="{{ product.url }}">
-                  <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" width="" height="" loading="lazy">
-                </a>
-              </div>
-              <div class="product-info">
-                <div class="product-rating">★ ★ ★ ★ ★ ({{ product.metafields.custom.reviews_count }})</div>
-                <h3 class="product-title">
-                  <a href="{{ product.url }}">{{ product.title }}</a>
-                </h3>
-                <div class="product-pricing">
-                  <p class="new-price">{{ product.price | money }}</p>
-                  {% if product.compare_at_price > product.price %}
-                    <p class="old-price">{{ product.compare_at_price | money }}</p>
-                  {% endif %}
-              {% if product.compare_at_price > product.price %}
-          <span class="price-item--percent cstm_dsic">
-            -{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}% 
-          </span>
-        {% endif %}
-            
-                  <!-- <div>Colour</div> -->
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-</div>
-
-</div>
-
-<style>
-  /* Tab Styling */
-  .tab-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
-  .tab-button { padding: 10px 15px; cursor: pointer; background: none; border: none; font-size: 16px; }
-  .tab-button.active { font-weight: bold; text-decoration: underline; }
-  .tab-pane { display: none; }
-  .tab-pane.active { display: block; }
-
-  /* Carousel Styling */
-  .carousel-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .product-carousel {
-    display: flex;
-    gap: 30px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 20px 0;
-    scroll-behavior: smooth;
-    white-space: nowrap;
-    width: 100%;
-  }
-
-  .product-item {
-    flex: 0 0 calc(33.33% - 20px); /* Show exactly 3 products per row */
-    scroll-snap-align: start;
-    text-align: center;
-    position: relative;
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .product-image-container img { width: 100%; border-radius: 10px; }
-  .product-info { padding-top: 10px; }
-  .product-rating { color: gold; font-size: 14px; margin-bottom: 5px; }
-  .product-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
-  .product-pricing { display: flex; gap: 10px; justify-content: center; align-items: center; }
-  .old-price { text-decoration: line-through; color: gray; }
-  .new-price { font-weight: bold; color: red; }
-  .badge { position: absolute; top: 10px; right: 10px; background: navy; color: white; padding: 5px; border-radius: 5px; }
-
-  /* Navigation Buttons */
-  .carousel-navigation {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 10px;
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    background: #333;
-    color: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .carousel-prev:hover,
-  .carousel-next:hover {
-    background: #555;
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Tab Switching Logic
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabPanes = document.querySelectorAll(".tab-pane");
-
-    tabButtons.forEach(button => {
-      button.addEventListener("click", function () {
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-        tabPanes.forEach(pane => pane.classList.remove("active"));
-        this.classList.add("active");
-        document.getElementById(this.getAttribute("data-tab")).classList.add("active");
-      });
-    });
-
-    // Carousel Navigation Logic (Fixed for Each Tab)
-    document.querySelectorAll(".tab-pane").forEach(pane => {
-      const prevBtn = pane.closest(".tab-container").querySelector(".carousel-prev");
-      const nextBtn = pane.closest(".tab-container").querySelector(".carousel-next");
-      const carousel = pane.querySelector(".product-carousel");
-
-      if (prevBtn && nextBtn && carousel) {
-        prevBtn.addEventListener("click", function () {
-          carousel.scrollBy({ left: -carousel.offsetWidth / 3, behavior: "smooth" });
-        });
-
-        nextBtn.addEventListener("click", function () {
-          carousel.scrollBy({ left: carousel.offsetWidth / 3, behavior: "smooth" });
-        });
-      }
-    });
-  });
-</script>
-
-
 {% schema %}
 {
-  "name": "Tabbed Product Carousel",
-  "settings": [],
+  "name": "Tabbed Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured Collections"
+    }
+  ],
   "blocks": [
     {
-      "type": "tab",
-      "name": "Tab",
+      "type": "collection_tab",
+      "name": "Collection Tab",
       "settings": [
         {
-          "type": "text",
-          "id": "tab_title",
-          "label": "Tab Title"
-        },
-        {
-          "type": "product_list",
-          "id": "products",
-          "label": "Select Products",
-          "limit": 10
-        },
-        {
-          "type": "range",
-          "id": "product_limit",
-          "label": "Number of Products to Display",
-          "min": 1,
-          "max": 10,
-          "step": 1,
-          "default": 3
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
         }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Tabbed Product Carousel",
-      "blocks": [
-        {
-          "type": "tab",
-          "settings": {
-            "tab_title": "Mealtime",
-            "product_limit": 3
-          }
-        },
-        {
-          "type": "tab",
-          "settings": {
-            "tab_title": "Playtime",
-            "product_limit": 3
-          }
-        },
-        {
-          "type": "tab",
-          "settings": {
-            "tab_title": "Bathtime",
-            "product_limit": 3
-          }
-        }
-      ]
-    }
-  ]
+  "max_blocks": 10,
+  "presets": [{
+    "name": "Tabbed Collections",
+    "category": "Custom"
+  }]
 }
 {% endschema %}
+
+<div class="tabbed-collections">
+  <h2>{{ section.settings.title }}</h2>
+
+  <ul class="tabs">
+    {% for block in section.blocks %}
+      <li class="tab {% if forloop.first %}active{% endif %}" data-tab="tab-{{ forloop.index }}">
+        {{ block.settings.collection.title }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="tab-content">
+    {% for block in section.blocks %}
+      <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index }}">
+        <div class="products-grid">
+          {% for product in block.settings.collection.products limit: 8 %}
+            <div class="product-item">
+              <a href="{{ product.url }}">
+                <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
+                <p>{{ product.title }}</p>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.tabs { display: flex; gap: 1rem; cursor: pointer; margin-bottom: 20px; }
+.tab { padding: 10px 20px; border: 1px solid #ccc; }
+.tab.active { background: #000; color: white; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const tabs = document.querySelectorAll('.tab');
+  const panes = document.querySelectorAll('.tab-pane');
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      // Remove active from all
+      tabs.forEach(t => t.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+
+      // Add active to clicked
+      tab.classList.add('active');
+      panes[index].classList.add('active');
+    });
+  });
+});
+</script>
