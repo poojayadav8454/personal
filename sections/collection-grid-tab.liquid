@@ -1,274 +1,243 @@
-{% comment %} {{ 'component-product-listing.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
-<div class="trimmer-category container">
-  <ul class="trimmer-cat-ul">
+<div class="tab-container">
+  <!-- Tabs -->
+  <div class="tab-buttons">
+    <div class="tab-tab1">
+       <div class="tab-title">Happy Corners Start Here </div>
     {% for block in section.blocks %}
-      <li
-        class="trimmer-cat-li tab-menu-trimmer {% unless forloop.index == 1 %}notIndex-one {% endunless %} {% if forloop.index == 1 %}tab-color{% endif %} {% if block.settings.icon-tab == blank %}image-blank-tab{% endif %}"
-        dataId="custom-{{ forloop.index }}"
-      >
-        {% if block.settings['icon-tab'] != '' %}
-          <span>{{ block.settings['icon-tab'] }}</span>
-        {% endif %}
-        {% if block.settings['icon-tab'] == blank %}
-          <span class="blank-image-div"></span>
-        {% endif %}
-        <p
-          class=""
-        >
-          {{ block.settings.tab_text }}
-        </p>
-      </li>
+      <button class="tab-button {% if forloop.first %}active{% endif %}" data-tab="tab-{{ block.id }}">
+        {{ block.settings.tab_title }}
+      </button>
     {% endfor %}
-  </ul>
-</div>
+    </div>
+   
+     <div class="carousel-navigation">
+      <button class="carousel-prev"> <img class="" src='https://cdn.shopify.com/s/files/1/0719/5410/4632/files/back-arrow.png?v=1743670467' width="" height="" loading="lazy" alt="Login"> </button>
+      <button class="carousel-next"> <img class="" src='https://cdn.shopify.com/s/files/1/0719/5410/4632/files/right-arrow_6.png?v=1743670406' width="" height="" loading="lazy" alt="Login"> </button>
+  </div>
+  </div>
 
-<div class="collection custom-product-grid container">
-  {%- for block in section.blocks -%}
-    <div
-      class="main-product-grid tab-collection-product {% if forloop.index == 1 %}collection-index{% else %}not-collection-index{% endif %}"
-      id="custom-{{ forloop.index }}"
-    >
-      {% if block.settings.image != blank %}
-        {{ block.settings.image | image_url: width: '1440' | image_tag: loading: 'lazy', class: 'trimmer-grid' }}
-      {% endif %}
-      <ul
-        class="productListing {% if layout == '1' %} productList{% else %} productGrid column-{{ '4' }}{% endif %} list-{{ '2' }} list-unstyled"
-        id="main-collection-product-grid"
-        data-id="{{ section.id }}"
-      >
-        {% assign productgrid = block.settings.collection %}
-        {%- for product in productgrid.products -%}
-          <!-- <li class="product customproduct custompdp-{{ forloop.index }} custom---{{ productgrid.handle }}--{{ forloop.index }}">
-             {% render 'card-product',
-              card_product: product,
-            %}
-          </li> -->
-          <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <ul
-        id="Slider-{{ section.id }}"
-        data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
-        role="list"
-        aria-label="{{ 'general.slider.name' | t }}"
-      >
-        {% assign skip_card_product_styles = false %}
-        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-          <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {% render 'card-product',
-              card_product: product,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating,
-              skip_styles: skip_card_product_styles,
-              section_id: section.id,
-              quick_add: section.settings.quick_add
-            %}
-          </li>
-          {%- assign skip_card_product_styles = true -%}
-        {%- else -%}
-          {%- for i in (1..section.settings.columns_desktop) -%}
-            <li
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-                style="--animation-order: {{ forloop.index }};"
+  <!-- Navigation Buttons Wrapper -->
+ 
+
+  <!-- Product Carousels -->
+  <div class="tab-content-other">
+  {% for block in section.blocks %}
+    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ block.id }}">
+      <div class="carousel-container carousel-scroll-custom">
+        <div class="product-carousel">
+          {% assign product_limit = block.settings.product_limit | default: 4 %}
+          {% for product in block.settings.products limit: product_limit %}
+            <div class="product-item">
+              {% if product.metafields.custom.best_seller %}
+                <span class="badge best-seller">Best Seller</span>
               {% endif %}
-            >
-              {% liquid
-                assign ridx = forloop.rindex
-                case ridx
-                  when 5
-                    assign ridx = 1
-                  when 6
-                    assign ridx = 2
-                endcase
-              %}
-              {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
-              {% render 'card-product',
-                show_vendor: section.settings.show_vendor,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                placeholder_image: placeholder_image
-              %}
-            </li>
-          {%- endfor -%}
-        {%- endfor -%}
-      </ul>
-      {%- if show_mobile_slider or show_desktop_slider -%}
-        <div class="slider-buttons">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-            aria-controls="Slider-{{ section.id }}"
-          >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
-          </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ products_to_display }}</span>
-          </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-            aria-controls="Slider-{{ section.id }}"
-          >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
-          </button>
-        </div>
-      {%- endif -%}
-    </slider-component>
-        {%- endfor -%}
-        {% if productgrid.metafields.custom.product_collection %}
-          {% if productgrid.metafields.custom.product_collection.value != blank %}
-            <h2 class="grid-head">{{ section.settings.text }}</h1>
-            <div class="main-meta-product">
-              <div class="center_product">
-                {% for product_reference in productgrid.metafields.custom.product_collection.value %}
-                  {% render 'collection-product-page', product: product_reference %}
-                {% endfor %}
+              <div class="product-image-container">
+                <a href="{{ product.url }}">
+                  <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" width="" height="" loading="lazy">
+                </a>
+              </div>
+              <div class="product-info">
+                <div class="product-rating">★ ★ ★ ★ ★ ({{ product.metafields.custom.reviews_count }})</div>
+                <h3 class="product-title">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+                <div class="product-pricing">
+                  <p class="new-price">{{ product.price | money }}</p>
+                  {% if product.compare_at_price > product.price %}
+                    <p class="old-price">{{ product.compare_at_price | money }}</p>
+                  {% endif %}
+              {% if product.compare_at_price > product.price %}
+          <span class="price-item--percent cstm_dsic">
+            -{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}% 
+          </span>
+        {% endif %}
+            
+                  <!-- <div>Colour</div> -->
+                </div>
               </div>
             </div>
-          {% endif %}
-        {% else %}
-
-        {% endif %}
-      </ul>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-  {%- endfor -%}
+  {% endfor %}
 </div>
-<div class="mobile-product-slider">
-  <h1>{{ section.settings['text-scroll'] }}</h1>
-  <div class="show-in-mobile">
-    {% render 'custom-product-page' %}
-  </div>
+
 </div>
+
 <style>
-  .main-product-grid .main-meta-product .center_product{
-        /* padding: 0 0 0 8px; */
-    gap:10px;
-  }
-  .trimmer-grid{
+  /* Tab Styling */
+  .tab-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
+  .tab-button { padding: 10px 15px; cursor: pointer; background: none; border: none; font-size: 16px; }
+  .tab-button.active { font-weight: bold; text-decoration: underline; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  /* Carousel Styling */
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
     width: 100%;
-    height: auto;
   }
-  .tab-menu-trimmer p{
-    margin:0;
 
+  .product-carousel {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    width: 100%;
   }
-  .not-collection-index{
-        display: none;
-  }
-  /* tab css */
 
-    .trimmer-category {
-      max-width: 100%;
-      width: 800px;
-      position: relative;
-      margin: 0 auto;
-      /* padding-top:30px; */
-  }
-  ul.trimmer-cat-ul {
-      max-width: 100%;
-      width: 800px;
-      margin: 0 auto 20px auto;
-      list-style: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 25px;
-      /* justify-content: center; */
-      /* border: 2px solid #ddd; */
-      padding: 6px 0;
-  }
-  li.trimmer-cat-li {
-     padding: 10px 48px;
+  .product-item {
+    flex: 0 0 calc(33.33% - 20px); /* Show exactly 3 products per row */
+    scroll-snap-align: start;
+    text-align: center;
+    position: relative;
+    background: #fff;
+    padding: 15px;
     border-radius: 10px;
-    font-weight: bold;
-    font-size: 17px;
-    transition: 0.4s;
-    /* border: 1px solid #31bad2; */
-    background:white;
-    text-align:center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
 
-    @media(max-width:450px){
-      ul.trimmer-cat-ul{gap:5%}
-    }
+  .product-image-container img { width: 100%; border-radius: 10px; }
+  .product-info { padding-top: 10px; }
+  .product-rating { color: gold; font-size: 14px; margin-bottom: 5px; }
+  .product-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+  .product-pricing { display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .old-price { text-decoration: line-through; color: gray; }
+  .new-price { font-weight: bold; color: red; }
+  .badge { position: absolute; top: 10px; right: 10px; background: navy; color: white; padding: 5px; border-radius: 5px; }
 
-  /* tab css */
+  /* Navigation Buttons */
+  .carousel-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    background: #333;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-prev:hover,
+  .carousel-next:hover {
+    background: #555;
+  }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Tab Switching Logic
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", function () {
+        tabButtons.forEach(btn => btn.classList.remove("active"));
+        tabPanes.forEach(pane => pane.classList.remove("active"));
+        this.classList.add("active");
+        document.getElementById(this.getAttribute("data-tab")).classList.add("active");
+      });
+    });
+
+    // Carousel Navigation Logic (Fixed for Each Tab)
+    document.querySelectorAll(".tab-pane").forEach(pane => {
+      const prevBtn = pane.closest(".tab-container").querySelector(".carousel-prev");
+      const nextBtn = pane.closest(".tab-container").querySelector(".carousel-next");
+      const carousel = pane.querySelector(".product-carousel");
+
+      if (prevBtn && nextBtn && carousel) {
+        prevBtn.addEventListener("click", function () {
+          carousel.scrollBy({ left: -carousel.offsetWidth / 3, behavior: "smooth" });
+        });
+
+        nextBtn.addEventListener("click", function () {
+          carousel.scrollBy({ left: carousel.offsetWidth / 3, behavior: "smooth" });
+        });
+      }
+    });
+  });
+</script>
+
+
 {% schema %}
-  {
-    "name": "Trimmer Tab",
-    "settings": [
-      {
-        "type": "text",
-        "id": "text",
-        "label": "Heading",
-        "default":"Specific Product"
-      },
-      {
-        "type": "text",
-        "id": "text-scroll",
-        "label": "Heading",
-        "default":"#Khulkekhel Featured"
-      }
-    ],
-    "blocks": [
-  {
-    "type": "grid",
-    "name": "Trimmer Grid",
-    "settings": [
-      {
-        "type": "text",
-        "id": "tab_text",
-        "label": "Tab Name"
-      },
-      {
-        "type": "html",
-        "id": "icon-tab",
-        "label": "Tab Icon"
-      },
-      {
-        "type": "header",
-        "content": "Collection Content"
-      },
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-      {
-        "type": "collection",
-        "id": "collection",
-        "label": "Choose Collection"
-      }
-    ]
-  }
-],
-    "presets": [
-      {
-        "name": "Trimmer Tab"
-      }
-    ]
-  }
+{
+  "name": "Tabbed Product Carousel",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Select Products",
+          "limit": 10
+        },
+        {
+          "type": "range",
+          "id": "product_limit",
+          "label": "Number of Products to Display",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 3
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed Product Carousel",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Mealtime",
+            "product_limit": 3
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Playtime",
+            "product_limit": 3
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Bathtime",
+            "product_limit": 3
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
