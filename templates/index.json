@@ -632,40 +632,48 @@
       ],
       "settings": {}
     },
-    "schema_access_6xGKwk": {
-      "type": "schema-access",
-      "settings": {
-        "schema-access": "pooja yadav kanpur"
-      }
-    },
     "collection_grid_tab_VxMGDG": {
       "type": "collection-grid-tab",
       "name": "Collection Grid",
-      "settings": {
-        "text": "Women",
-        "text-scroll": "#Khulkekhel Featured"
-      }
+      "settings": {}
     },
     "collection_grid_tab_8VUnqM": {
       "type": "collection-grid-tab",
+      "name": "Trimmer Tab",
+      "settings": {}
+    },
+    "collection_grid_tab_g7QArp": {
+      "type": "collection-grid-tab",
       "blocks": {
-        "grid_QaDQyj": {
-          "type": "grid",
+        "collection_tab_J7TmDA": {
+          "type": "collection_tab",
           "settings": {
-            "tab_text": "Men",
-            "icon-tab": "",
+            "tab_title": "Men",
             "collection": "men"
+          }
+        },
+        "collection_tab_xKe49i": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_title": "Women",
+            "collection": "women"
+          }
+        },
+        "collection_tab_r3dC8c": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_title": "Combo",
+            "collection": "combo"
           }
         }
       },
       "block_order": [
-        "grid_QaDQyj"
+        "collection_tab_J7TmDA",
+        "collection_tab_xKe49i",
+        "collection_tab_r3dC8c"
       ],
-      "name": "Trimmer Tab",
-      "settings": {
-        "text": "Specific Product",
-        "text-scroll": "#Khulkekhel Featured"
-      }
+      "name": "Tabbed Collection",
+      "settings": {}
     }
   },
   "order": [
@@ -684,8 +692,8 @@
     "testimunials_mKY3aW",
     "newsletter_8zq6J4",
     "new_block_section_4ez4nR",
-    "schema_access_6xGKwk",
     "collection_grid_tab_VxMGDG",
-    "collection_grid_tab_8VUnqM"
+    "collection_grid_tab_8VUnqM",
+    "collection_grid_tab_g7QArp"
   ]
 }
