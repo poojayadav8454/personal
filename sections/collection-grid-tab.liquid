@@ -40,12 +40,8 @@
         {% assign productgrid = block.settings.collection %}
         {%- for product in productgrid.products -%}
           <li class="product customproduct custompdp-{{ forloop.index }} custom---{{ productgrid.handle }}--{{ forloop.index }}">
-            {% render 'custom-product-card',
-              product_card_product: product,
-              serial: forloop.index,
-              sectionId: section.id,
-              show_list: true,
-              loading: true
+             {% render 'card-product',
+              card_product: product,
             %}
           </li>
         {%- endfor -%}
