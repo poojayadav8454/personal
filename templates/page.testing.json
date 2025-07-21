@@ -25,7 +25,7 @@
           "settings": {
             "tab_title": "Men",
             "collection": "men",
-            "cstm_tab_title": "Hello"
+            "cstm_tab_title": "Hello 1"
           }
         },
         "collection_tab_BnyY9q": {
@@ -33,7 +33,7 @@
           "settings": {
             "tab_title": "Women",
             "collection": "women",
-            "cstm_tab_title": ""
+            "cstm_tab_title": "Hello 2"
           }
         },
         "collection_tab_qpmRwG": {
@@ -41,7 +41,7 @@
           "settings": {
             "tab_title": "Combo",
             "collection": "combo",
-            "cstm_tab_title": ""
+            "cstm_tab_title": "Hello 3"
           }
         }
       },
