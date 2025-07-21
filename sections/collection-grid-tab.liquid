@@ -16,7 +16,12 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
-        }
+        },
+       {
+          "type": "text",
+          "id": "cstm_tab_title",
+          "label": "Custom Title"
+        },
       ]
     }
   ],
@@ -88,6 +93,7 @@
   </div>
 
   {% for block in section.blocks %}
+     {{ block.settings.cstm_tab_title }}
     <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
       <ul class="scroll-list">
         {% for product in block.settings.collection.products limit: 20 %}
