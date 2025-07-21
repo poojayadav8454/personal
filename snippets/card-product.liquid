@@ -355,7 +355,7 @@
                 </div>
               </quick-add-modal>
             {%- else -%}
-           
+           {% render 'atc', section:section, %}
               <product-form kkkk data-section-id="{{ section.id }}">
                 {%- form 'product',
                   card_product,
