@@ -1,37 +1,27 @@
-{% schema %}
-{
-  "name": "Tabbed Collection",
-  "settings": [],
-  "blocks": [
-    {
-      "type": "collection_tab",
-      "name": "Collection Tab",
-      "settings": [
-        {
-          "type": "text",
-          "id": "tab_title",
-          "label": "Tab Title"
-        },
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
-        },
-       {
-          "type": "richtext",
-          "id": "cstm_tab_title",
-          "label": "Custom Title"
-        },
-      ]
-    }
-  ],
-  "max_blocks": 5,
-  "presets": [{
-    "name": "Tabbed Collection",
-    "category": "Custom"
-  }]
-}
-{% endschema %}
+<div class="tab-collection-wrapper page-width">
+  <div class="tab-buttons">
+    {% for block in section.blocks %}
+      <button class="tab-button {% if forloop.first %}active{% endif %}" data-tab="tab-{{ forloop.index0 }}">
+        {{ block.settings.tab_title }}
+      </button>
+    {% endfor %}
+  </div>
+
+  {% for block in section.blocks %}
+    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
+    <div class="custom-content"> {{ block.settings.cstm_tab_title }}</div>
+      <ul class="scroll-list">
+        {% for product in block.settings.collection.products limit: 20 %}
+          <li class="scroll-item">
+            {% render 'card-product', card_product: product %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</div>
+
+
 
 <style>
 .tab-buttons {
@@ -83,28 +73,41 @@
 }
 </style>
 
-<div class="tab-collection-wrapper page-width">
-  <div class="tab-buttons">
-    {% for block in section.blocks %}
-      <button class="tab-button {% if forloop.first %}active{% endif %}" data-tab="tab-{{ forloop.index0 }}">
-        {{ block.settings.tab_title }}
-      </button>
-    {% endfor %}
-  </div>
-
-  {% for block in section.blocks %}
-    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}">
-    <div class="custom-content"> {{ block.settings.cstm_tab_title }}</div>
-      <ul class="scroll-list">
-        {% for product in block.settings.collection.products limit: 20 %}
-          <li class="scroll-item">
-            {% render 'card-product', card_product: product %}
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endfor %}
-</div>
+{% schema %}
+{
+  "name": "Tabbed Collection",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+       {
+          "type": "richtext",
+          "id": "cstm_tab_title",
+          "label": "Custom Title"
+        },
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [{
+    "name": "Tabbed Collection",
+    "category": "Custom"
+  }]
+}
+{% endschema %}
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
